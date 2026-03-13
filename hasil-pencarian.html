@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hasil Pencarian | kerja.in</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .result-container { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
+        .result-header { margin-bottom: 30px; border-bottom: 2px solid var(--biru-muda); padding-bottom: 10px; }
+        .grid-tukang { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        
+        .card-tukang { 
+            background: white; border-radius: 15px; overflow: hidden; 
+            box-shadow: var(--shadow); border: 1px solid #eee; transition: 0.3s;
+        }
+        .card-tukang:hover { transform: translateY(-5px); }
+        .img-wrapper { width: 100%; height: 200px; overflow: hidden; }
+        .img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .info-tukang { padding: 20px; }
+        .nama-tukang { font-size: 1.2rem; font-weight: 800; color: var(--biru-donker); }
+        .tag-sertifikasi { 
+            display: inline-block; background: #dcfce7; color: #166534; 
+            font-size: 0.75rem; padding: 2px 8px; border-radius: 5px; margin-bottom: 10px;
+        }
+        .detail-item { font-size: 0.9rem; color: var(--abu-abu-dark); margin: 5px 0; }
+        .rating { color: #fbbf24; font-weight: bold; }
+        .btn-order { 
+            width: 100%; background: var(--biru-donker); color: white; 
+            border: none; padding: 10px; border-radius: 8px; margin-top: 15px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-kerjain">
+        <a href="index.html" class="logo">kerja<span>.in</span></a>
+    </nav>
+
+    <div class="result-container">
+        <div class="result-header">
+            <h2 id="judul-hasil">Mencari Tukang...</h2>
+            <p id="sub-judul">Lokasi: <span id="txt-lokasi">-</span></p>
+        </div>
+
+        <div class="grid-tukang" id="daftar-tukang">
+            </div>
+    </div>
+
+    <script>
+        // 1. Ambil data dari URL
+        const params = new URLSearchParams(window.location.search);
+        const kat = params.get('kategori');
+        const lok = params.get('lokasi');
+
+        document.getElementById('txt-lokasi').innerText = lok.charAt(0).toUpperCase() + lok.slice(1);
+        document.getElementById('judul-hasil').innerText = `Hasil Jasa ${kat === 'elektronik' ? 'Service Elektronik' : kat === 'perbaikan' ? 'Perbaikan Rumah' : 'Kebersihan'}`;
+
+        // 2. Data Fiktif
+        const dataTukang = [
+            { nama: "Bpk. Ahmad Suherman", kat: "kebersihan", foto: "kangbersih.jpg", sertif: "Sertifikasi BNSP Kebersihan Gedung", rate: "4.9", desk: "Spesialis pembersihan detail & e-waste." },
+            { nama: "Bpk. Jaka Kelana", kat: "perbaikan", foto: "kangcat.jpg", sertif: "Sertifikasi Konstruksi Sipil", rate: "4.8", desk: "Ahli cat tembok & perbaikan struktur rumah." },
+            { nama: "Bpk. Rian Hidayat", kat: "elektronik", foto: "kangmesincuci.jpg", sertif: "Teknisi Elektronik Berlisensi", rate: "5.0", desk: "Service mesin cuci & alat rumah tangga lainnya." }
+        ];
+
+        // 3. Filter dan Tampilkan
+        const container = document.getElementById('daftar-tukang');
+        const hasilFilter = dataTukang.filter(t => t.kat === kat);
+
+        if(hasilFilter.length > 0) {
+            hasilFilter.forEach(t => {
+                container.innerHTML += `
+                    <div class="card-tukang">
+                        <div class="img-wrapper"><img src="${t.foto}" alt="Tukang"></div>
+                        <div class="info-tukang">
+                            <span class="tag-sertifikasi"><i class="fas fa-certificate"></i> ${t.sertif}</span>
+                            <div class="nama-tukang">${t.nama}</div>
+                            <div class="detail-item"><i class="fas fa-map-marker-alt"></i> Area: ${lok.toUpperCase()}</div>
+                            <div class="detail-item rating"><i class="fas fa-star"></i> ${t.rate} (Review AI)</div>
+                            <p class="detail-item">${t.desk}</p>
+                            <button class="btn-order">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                `;
+            });
+        } else {
+            container.innerHTML = "<p>Maaf, tukang di kategori ini belum tersedia di kota Anda.</p>";
+        }
+    </script>
+</body>
+</html>

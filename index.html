@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kerja.in | Jasa Tukang</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="nav-kerjain">
+    <a href="index.html" class="logo-container">
+        <img src="logo.jpeg" alt="Logo Kerja.in" class="img-logo">
+        <div class="logo">kerja<span>.in</span></div>
+    </a>
+    
+    <div class="nav-links">
+        <a href="masuk.html">Masuk</a>
+        <a href="daftar.html">Daftar</a>
+    </div>
+</nav>
+
+    <section class="hero">
+        <h1>Temukan Tukang Terpercaya <br> Berbasis Standar Sertifikasi</h1>
+        
+        <div class="search-box">
+            <div class="input-group">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <select id="kategori-jasa">
+                    <option disabled selected>Pilih Jasa...</option>
+                    <option value="elektronik">Jasa Service Elektronik</option>
+                    <option value="perbaikan">Jasa Perbaikan Rumah</option>
+                    <option value="kebersihan">Jasa Kebersihan</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-location-dot"></i>
+                <select id="pilihan-lokasi">
+                    <option disabled selected>Pilih Lokasi...</option>
+                    <option value="jakarta">Jakarta</option>
+                    <option value="bandung">Bandung</option>
+                    <option value="surabaya">Surabaya</option>
+                </select>
+            </div>
+
+            <button class="btn-primary" onclick="cariJasa()">Temukan Jasa</button>
+
+<script>
+function cariJasa() {
+    const kategori = document.getElementById('kategori-jasa').value;
+    const lokasi = document.getElementById('pilihan-lokasi').value;
+    
+    if(kategori === "Pilih Jasa..." || lokasi === "Pilih Lokasi...") {
+        alert("Silakan pilih kategori dan lokasi terlebih dahulu!");
+        return;
+    }
+
+    // Mengirim data via URL (Query String)
+    window.location.href = `hasil.html?kategori=${kategori}&lokasi=${lokasi}`;
+}
+</script>
+        </div>
+    </section>
+    
+<section class="review-section">
+    <div class="review-container">
+        <h2 class="section-title">Apa Kata Mereka?</h2>
+        <div class="review-grid">
+            
+            <a href="#" class="review-card">
+                <img src="ac.jpg" alt="Review AC" class="review-img">
+                <div class="review-content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="comment">"AC jadi dingin banget dan tukangnya sopan. Mantap kerja.in!"</p>
+                </div>
+            </a>
+
+            <a href="#" class="review-card">
+                <img src="bersih.jpg" alt="Review Kebersihan" class="review-img">
+                <div class="review-content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="comment">"Sangat bersih dan detail. Gak nyesel langganan di sini."</p>
+                </div>
+            </a>
+
+            <a href="#" class="review-card">
+                <img src="rumah.jpg" alt="Review Perbaikan Rumah" class="review-img">
+                <div class="review-content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="comment">"Pengerjaan renovasi rapi dan tepat waktu. AI estimasinya akurat."</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+    <div class="ai-chatbot">
+        <button class="ai-btn">
+            <i class="fa-solid fa-robot"></i>
+        </button>
+    </div>
+<footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="#" class="logo-footer">kerja<span>.in</span></a>
+                <p class="footer-desc">
+                    Solusi layanan on-demand jasa tukang tersertifikasi pertama di Indonesia dengan integrasi AI dan fokus pada keberlanjutan lingkungan.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Layanan Kami</h4>
+                <ul>
+                    <li><a href="#">Service AC</a></li>
+                    <li><a href="#">Tukang Bangunan</a></li>
+                    <li><a href="#">E-Waste Management</a></li>
+                    <li><a href="#">Konsultasi AI</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Perusahaan</h4>
+                <ul>
+                    <li><a href="#">Tentang Kami</a></li>
+                    <li><a href="#">Karir</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 kerja.in. Made with 💙 by Priscil, Tsabita, & Shifa.</p>
+        </div>
+    </footer>
+</body>
+</html>                       
